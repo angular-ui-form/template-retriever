@@ -8,7 +8,7 @@ angular.module('services.templateRetriever',[])
 			$http({
 				url: templateUrl,
 				method: 'GET',
-				headers: {},
+				headers: {'Content-Type': 'text/html'},
 				tracker: tracker || 'promiseTracker'
 			})
 			.success(function(data){
