@@ -19,9 +19,11 @@ module.exports = function (grunt) {
   grunt.initConfig({
 
     // Project settings
+    pkg: grunt.file.readJSON('package.json'),
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
+      services: 'app/scripts/services',
       dist: 'dist'
     },
 
@@ -339,9 +341,15 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // concat: {
-    //   dist: {}
-    // },
+    concat: {
+      dist: {
+        src: [          
+          '<%= yeoman.services %>/{,*}/*.js',
+          '!<%= yeoman.services %>/{,*}/*spec.js'
+        ],
+        dest: '<%= yeoman.dist %>/<%= pkg.name %>.js'
+      }
+    },
 
     // Test settings
     karma: {
